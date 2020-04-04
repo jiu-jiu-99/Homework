@@ -18,9 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:textSize="22sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_gravity="center_horizontal"
-        android:text="@string/rainbow_text" />
+        android:text="作业二 彩虹字体" />
 
     <LinearLayout
         android:layout_width="match_parent"

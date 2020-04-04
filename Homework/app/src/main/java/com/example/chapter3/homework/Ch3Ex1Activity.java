@@ -40,6 +40,9 @@ public class Ch3Ex1Activity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                animationView.setProgress(progress/100f);
+
+
                 // TODO ex1-2: 这里应该调用哪个函数呢
                 // 提示1：可以参考 https://airbnb.io/lottie/#/android?id=custom-animators
                 // 提示2：SeekBar 的文档可以把鼠标放在 OnProgressChanged 中间，并点击 F1 查看，
@@ -48,6 +51,7 @@ public class Ch3Ex1Activity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                animationView.pauseAnimation();
             }
 
             @Override
