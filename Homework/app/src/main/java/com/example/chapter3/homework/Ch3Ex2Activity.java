@@ -2,6 +2,7 @@ package com.example.chapter3.homework;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -138,11 +141,29 @@ public class Ch3Ex2Activity extends AppCompatActivity {
 
         // TODO ex2-1：在这里实现另一个 ObjectAnimator，对 target 控件的大小进行缩放，从 1 到 2 循环
 
+        AnimatorSet animator0 = new AnimatorSet();//组合动画
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(target, "scaleX", 1, 2);
+        scaleX.setRepeatCount(ValueAnimator.INFINITE);
+        scaleX.setInterpolator(new LinearInterpolator());
+        scaleX.setDuration(1000);
+        scaleX.setRepeatMode(ValueAnimator.REVERSE);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(target, "scaleY", 1, 2);
+        scaleY.setRepeatCount(ValueAnimator.INFINITE);
+        scaleY.setInterpolator(new LinearInterpolator());
+        scaleY.setDuration(1000);
+        scaleY.setRepeatMode(ValueAnimator.REVERSE);
+        animator0.playTogether(scaleX, scaleY);
+        animator0.start();
         // TODO ex2-2：在这里实现另一个 ObjectAnimator，对 target 控件的透明度进行修改，从 1 到 0.5f 循环
+
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(target,"alpha",1, 0.5f);
+        animator2.setDuration(1000);
+        animator2.setRepeatMode(ObjectAnimator.REVERSE);
+        animator2.start();
 
         // TODO ex2-3: 将上面创建的其他 ObjectAnimator 都添加到 AnimatorSet 中
         animatorSet = new AnimatorSet();
-        animatorSet.playTogether(animator1);
+        animatorSet.playTogether(animator1, animator0, animator2);
         animatorSet.start();
     }
 }
